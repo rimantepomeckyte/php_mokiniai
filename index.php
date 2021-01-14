@@ -119,17 +119,18 @@ $students = [
         <th>Sudarymo data</th>
     </tr>
     <?php foreach ($students as $class => $student): ?>
-    <?php foreach ($student as $code => $value):?>
+        <?php foreach ($student as $code => $value): ?>
+
             <tr>
                 <td><?= $class; ?></td>
                 <td><?= $code; ?></td>
-                <td><?=$value[0];?></td>
-                <td><?=$value[1];?></td>
-                <td></td>
-                <!--<?php foreach ($value as $grades):?>
-                <td><?=array_sum($grades);?></td>
-               <?php endforeach;?>-->
-                <td><?=$value[2];?></td>
+                <?php foreach ($value as $properties => $prop): ?>
+                    <td><?= $prop; ?></td>
+                    <?php if (is_array($properties)): ?>
+                        <td><?= array_sum($prop) / count($prop); ?></td>
+                    <?php endif; ?>
+
+                <?php endforeach; ?>
             </tr>
         <?php endforeach; ?>
     <?php endforeach; ?>
