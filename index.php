@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PHP</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
 <?php
 
 $students = [
@@ -108,30 +118,44 @@ $students = [
     ]
 ];
 ?>
+<div class="d-flex justify-content-center py-5 container">
+    <table class="text-center table table-sm table-striped table-dark w-75">
+        <tr>
+            <th>Klasė</th>
+            <th>Kodas</th>
+            <th>Vardas</th>
+            <th>Pavardė</th>
+            <th>Kontrolinių darbų vidurkis</th>
+            <th>Sudarymo data</th>
+        </tr>
+        <?php foreach ($students as $class => $student): ?>
+            <?php foreach ($student as $code => $value): ?>
 
-<table>
-    <tr>
-        <th>Klasė</th>
-        <th>Kodas</th>
-        <th>Vardas</th>
-        <th>Pavardė</th>
-        <th>Kontrolinių darbų vidurkis</th>
-        <th>Sudarymo data</th>
-    </tr>
-    <?php foreach ($students as $class => $student): ?>
-        <?php foreach ($student as $code => $value): ?>
-
-            <tr>
-                <td><?= $class; ?></td>
-                <td><?= $code; ?></td>
-                <?php foreach ($value as $properties => $prop): ?>
-                    <td><?= $prop; ?></td>
-                    <?php if (is_array($properties)): ?>
-                        <td><?= array_sum($prop) / count($prop); ?></td>
-                    <?php endif; ?>
-
-                <?php endforeach; ?>
-            </tr>
+                <tr>
+                    <td><?= $class; ?></td>
+                    <td><?= $code; ?></td>
+                    <?php foreach ($value as $properties => $prop): ?>
+                        <?php if (is_array($prop)): ?>
+                            <td><?= number_format((float)array_sum($prop) / count($prop), 1, '.', ''); ?></td>
+                        <?php else: ?>
+                            <td><?= ucfirst($prop); ?></td>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </tr>
+            <?php endforeach; ?>
         <?php endforeach; ?>
-    <?php endforeach; ?>
-</table>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+
