@@ -1,5 +1,5 @@
 <?php
-echo date("Y-m-d");
+
 $students = [
     "5a" => [
         rand(1,30) => [
@@ -106,3 +106,23 @@ $students = [
         ]
     ]
 ];
+?>
+
+<table>
+    <tr>
+        <th>Klasė</th>
+        <th>Kodas</th>
+        <th>Vardas</th>
+        <th>Pavardė</th>
+        <th>Kontrolinių darbų vidurkis</th>
+        <th>Sudarymo data</th>
+    </tr>
+    <?php foreach ($students as $class => $student)?>
+    <tr>
+        <td><?=$class;?></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
